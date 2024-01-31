@@ -25,7 +25,7 @@ let planets = [
     radius: 15,
     color: 'black',
   },
-	obj3 = {
+  obj3 = {
     x: 120,
     y: 0,
     mass: 333060401 / 2,
@@ -50,13 +50,13 @@ const gap = 20
 const rows = size / gap
 let gridArray = []
 for (let i = 0; i <= rows; i++) {
-	gridArray[i] = []
-	for (let j = 0; j <= rows; j++) {
-		gridArray[i][j] = {
-			x: i * gap - size / 2,
-			y: j * gap - size / 2,
-		}
-	}
+  gridArray[i] = []
+  for (let j = 0; j <= rows; j++) {
+    gridArray[i][j] = {
+      x: i * gap - size / 2,
+      y: j * gap - size / 2,
+    }
+  }
 }
 
 animate()
@@ -81,13 +81,13 @@ function animate() {
     planets[i].x += planets[i].xSpeed
     planets[i].y += planets[i].ySpeed
   }
-	
+  
   canvas.width = innerWidth
   canvas.height = innerHeight
   ctx.translate(canvas.width / 2, canvas.height / 2)
 
-	drawBoard()
-	drawPlanets()
+  drawBoard()
+  drawPlanets()
 
   requestAnimationFrame(animate)
 }
@@ -147,17 +147,17 @@ function drawBoard() {
 }
 
 function drawPlanets() {
-	for (let i = 0; i < planets.length; i++) {
-		ctx.beginPath()
-		ctx.arc(planets[i].x, planets[i].y, planets[i].radius, 0, pi2)
-		ctx.fillStyle = planets[i].color
-		ctx.fill()
-	}
+  for (let i = 0; i < planets.length; i++) {
+    ctx.beginPath()
+    ctx.arc(planets[i].x, planets[i].y, planets[i].radius, 0, pi2)
+    ctx.fillStyle = planets[i].color
+    ctx.fill()
+  }
 }
 
 function checkDist(obj1, obj2) {
-	return Math.sqrt(
-		(obj1.x - obj2.x) ** 2 +
-		(obj1.y - obj2.y) ** 2
-	)
+  return Math.sqrt(
+    (obj1.x - obj2.x) ** 2 +
+    (obj1.y - obj2.y) ** 2
+  )
 }
