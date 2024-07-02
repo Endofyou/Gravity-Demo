@@ -59,9 +59,14 @@ for (let i = 0; i <= rows; i++) {
   }
 }
 
+let frameTime = performance.now()
+
 animate()
 
 function animate() {
+  frameTime = performance.now() - frameTime
+  const timeMult = 0.06 * frameTime
+  
   for (let i = 0; i < planets.length; i++) {
     for (let j = 0; j < planets.length; j++) {
       if (i != j) {
@@ -78,8 +83,8 @@ function animate() {
   }
 
   for (let i = 0; i < planets.length; i++) {
-    planets[i].x += planets[i].xSpeed
-    planets[i].y += planets[i].ySpeed
+    planets[i].x += planets[i].xSpeed * timeMult
+    planets[i].y += planets[i].ySpeed * timeMult
   }
   
   canvas.width = innerWidth
@@ -113,15 +118,15 @@ function drawBoard() {
       iterate: for (let k = 0; k < dx; k++) {
         for (let l = 0; l < planets.length; l++) {
           if (checkDist(planets[l], curveArray[i][j]) < mag[l]) {
-            curveArray[i][j].x = planets[l].x
-            curveArray[i][j].y = planets[l].y
+            curveArray[i][j].x = planets[l].x * timeMult
+            curveArray[i][j].y = planets[l].y * timeMult
 
             break iterate
           } else {
             const angle = Math.atan2(planets[l].y - curveArray[i][j].y, planets[l].x - curveArray[i][j].x)
 
-            curveArray[i][j].x += mag[l] * Math.cos(angle)
-            curveArray[i][j].y += mag[l] * Math.sin(angle)
+            curveArray[i][j].x += mag[l] * Math.cos(angle) * timeMult
+            curveArray[i][j].y += mag[l] * Math.sin(angle) * timeMult
           }
         }
       }
