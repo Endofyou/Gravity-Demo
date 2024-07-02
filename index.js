@@ -95,7 +95,7 @@ function animate() {
   ctx.translate(canvas.width / 2, canvas.height / 2)
 
   drawBoard()
-  drawPlanets(timeMult)
+  drawPlanets()
 
   recordTime = performance.now()
   timeMult = Math.min(4, 0.12 * (recordTime - formatTime))
