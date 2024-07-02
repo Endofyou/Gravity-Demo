@@ -91,13 +91,13 @@ function animate() {
   canvas.height = innerHeight
   ctx.translate(canvas.width / 2, canvas.height / 2)
 
-  drawBoard()
+  drawBoard(timeMult)
   drawPlanets()
 
   requestAnimationFrame(animate)
 }
 
-function drawBoard() {
+function drawBoard(timeMult) {
   let curveArray = []
   const curvature = 0.003
   for (let i = 0; i <= rows; i++) {
