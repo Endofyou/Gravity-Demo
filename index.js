@@ -59,16 +59,24 @@ for (let i = 0; i <= rows; i++) {
   }
 }
 
+let recordTime = performance.now()
+let formatTime = recordTime
+let timeMult = 0
+
 animate()
 
 function animate() {
+  //recordTime = performance.now()
+  //timeMult = Math.min(4, 0.12 * (recordTime - formatTime))
+  //formatTime = recordTime
+
   for (let i = 0; i < planets.length; i++) {
     for (let j = 0; j < planets.length; j++) {
       if (i != j) {
         const xDistance = planets[j].x - planets[i].x
         const yDistance = planets[j].y - planets[i].y
         const distance2 = xDistance ** 2 + yDistance ** 2
-        const accel = (gConstant * planets[j].mass) / distance2
+        const accel = (gConstant * planets[j].mass * timeMult) / distance2
         const angle = Math.atan2(yDistance, xDistance)
 
         planets[i].xSpeed += accel * Math.cos(angle)
@@ -78,8 +86,8 @@ function animate() {
   }
 
   for (let i = 0; i < planets.length; i++) {
-    planets[i].x += planets[i].xSpeed
-    planets[i].y += planets[i].ySpeed
+    planets[i].x += planets[i].xSpeed * timeMult
+    planets[i].y += planets[i].ySpeed * timeMult
   }
   
   canvas.width = innerWidth
@@ -87,7 +95,11 @@ function animate() {
   ctx.translate(canvas.width / 2, canvas.height / 2)
 
   drawBoard()
-  drawPlanets()
+  drawPlanets(timeMult)
+
+  recordTime = performance.now()
+  timeMult = Math.min(4, 0.12 * (recordTime - formatTime))
+  formatTime = recordTime
 
   requestAnimationFrame(animate)
 }
