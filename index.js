@@ -8,7 +8,7 @@ const gConstant = 1.2e-6
 
 let planets = [
   obj1 = {
-    x: -220,
+    x: -200,
     y: 0,
     mass: 333060401,
     xSpeed: 0,
@@ -17,7 +17,7 @@ let planets = [
     color: '#ffea00',
   },
   obj2 = {
-    x: 220,
+    x: 240,
     y: 0,
     mass: 333060401 / 2,
     xSpeed: 0,
@@ -26,7 +26,7 @@ let planets = [
     color: 'black',
   },
   obj3 = {
-    x: 120,
+    x: 140,
     y: 0,
     mass: 333060401 / 2,
     xSpeed: 0,
